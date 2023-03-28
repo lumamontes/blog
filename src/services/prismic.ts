@@ -6,12 +6,13 @@ export interface PrismicConfig {
   req?: HttpRequestLike;
 }
 
-export function getPrismicClient(config: PrismicConfig): prismic.Client {
+
+export function getPrismicClient(config?: PrismicConfig): prismic.Client {
   const client = prismic.createClient(process.env.PRISMIC_API_ENDPOINT);
 
   enableAutoPreviews({
     client,
-    req: config.req,
+    req: config?.req,
   })
 
   return client;
