@@ -12,6 +12,7 @@ import Link from 'next/link';
 
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { useState } from 'react';
+import Footer from '../components/Footer';
 
 interface Post {
   uid?: string;
@@ -102,11 +103,7 @@ export default function Home({postWithPagination}) {
         </div>
         )
       }
-      <footer>
-        Feito com 💗 por Luma <br></br>
-        Projeto desenvolvido como desafio do curso Ignite da <a href='https://www.rocketseat.com.br/' target="blank">Rocketseat</a>
-      </footer>
-
+      <Footer />
     </section>
   )
 }
@@ -114,9 +111,7 @@ export default function Home({postWithPagination}) {
 export const getStaticProps: GetStaticProps = async () => {
   
   const client = createClient();
-  const postsResponse = await client.getByType('post', {
-    pageSize: 1
-  });
+  const postsResponse = await client.getByType('post');
   const postWithPagination: PostPagination = {
     next_page: postsResponse.next_page,
     results: postsResponse.results.map(post => {

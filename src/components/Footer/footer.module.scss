@@ -1,0 +1,20 @@
+.footer {
+    padding:62px 0;
+    text-align: center;
+    a {
+        color: #FF57B2;
+        cursor: pointer;
+ 
+        &:hover {
+         text-decoration: underline;
+     }
+    }
+    p {
+        margin-top: 6px;
+    }
+    strong {
+        font-weight: 600;
+    }
+
+
+}
