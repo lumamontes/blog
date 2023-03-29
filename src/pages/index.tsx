@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { FiCalendar, FiUser } from 'react-icons/fi';
+import { useState } from 'react';
 
 interface Post {
   uid?: string;
@@ -31,8 +32,39 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
+
 export default function Home({postWithPagination}) {
-  console.log(postWithPagination)
+  const [posts, setPosts] = useState(postWithPagination);
+
+  const loadMorePosts = async () => {
+      const nextPageUrl = posts.next_page;
+      if (!nextPageUrl) {
+        return;
+      }
+      const response = await fetch(nextPageUrl);
+      const { results, next_page } = await response.json();
+      const newPosts = results.map(post => {
+        return {
+          uid: post.uid,
+          first_publication_date:new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+          }),
+          data: {
+            title: post.data.title,
+            subtitle: post.data.subtitle,
+            author: post.data.author
+          }
+        }
+      });
+      const newPostsWithPagination = {
+        results: [...posts.results, ...newPosts],
+        next_page,
+      };
+      setPosts(newPostsWithPagination);
+    };
+  
   return (
     <section className={styles.container}>
       <div>
@@ -41,7 +73,7 @@ export default function Home({postWithPagination}) {
 
       <div className={styles.posts}>
           {
-            postWithPagination.results.map(post => (
+            posts.results.map(post => (
                 <Link href={`/posts/preview/${post.uid}`}>
                     <div key={post.uid}>
                         <h1>{post.data.title}</h1>
@@ -62,15 +94,18 @@ export default function Home({postWithPagination}) {
           }
       </div>
       {
-        postWithPagination.next_page && (
+        posts.next_page && (
           <div className={styles.continueReading}>
-          <a> 
-            Carregar mais posts
-            </a>
+            <a onClick={loadMorePosts}> 
+              Carregar mais posts
+              </a>
         </div>
         )
       }
-    
+      <footer>
+        Feito com 💗 por Luma <br></br>
+        Projeto desenvolvido como desafio do curso Ignite da <a href='https://www.rocketseat.com.br/' target="blank">Rocketseat</a>
+      </footer>
 
     </section>
   )
@@ -79,7 +114,9 @@ export default function Home({postWithPagination}) {
 export const getStaticProps: GetStaticProps = async () => {
   
   const client = createClient();
-  const postsResponse = await client.getByType('post');
+  const postsResponse = await client.getByType('post', {
+    pageSize: 1
+  });
   const postWithPagination: PostPagination = {
     next_page: postsResponse.next_page,
     results: postsResponse.results.map(post => {
