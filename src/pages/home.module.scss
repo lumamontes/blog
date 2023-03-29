@@ -1,66 +1,60 @@
-
-
 .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    margin: 5rem auto 0;
+  max-width: 720px;
+  padding: 0 2rem;
+  margin: 5rem auto 0;
 
-    .posts {
+  .posts {
+    div {
+      margin: 3rem auto 0;
+      transition: filter 0.2s;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(0.8);
+      }
+      h1 {
+        font-size: 1.75rem;
+        margin-bottom: 8px;
+      }
 
-        div {
-            margin: 3rem auto 0;
-            transition: filter 0.2s;
-            cursor: pointer;
-            &:hover {
-                filter: brightness(0.8);
-            }
-            h1{
-                font-size: 1.75rem;
-                margin-bottom: 8px;
-            }
-
-        .info{
-            font-size: 1rem;
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem
-            }
-        }
+      .info {
+        font-size: 1rem;
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
     }
+  }
 }
 
 .info {
-    margin-top: 1rem;
-    time,p{
-        font-size: 14px;
-        .icon {
-            font-size: 20px;
-        }
-        display: flex;
-        gap: 8px;
+  margin-top: 1rem;
+  time,
+  p {
+    font-size: 14px;
+    .icon {
+      font-size: 20px;
     }
+    display: flex;
+    gap: 8px;
+  }
 }
 
-
 .continueReading {
-   padding: 2rem ;
-   text-align: center;
-   background: var(--gray-850);
-   border-radius: 100px;
-   font-size: 1.25rem;
-   font-weight: bold;
-   margin: 4rem 0 2rem;
+  padding: 2rem;
+  text-align: center;
+  background: var(--gray-850);
+  border-radius: 100px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 4rem 0 2rem;
 
-   a {
-       color: #FF57B2;
-       margin-left: 0.5rem;
-       cursor: pointer;
+  a {
+    color: #ff57b2;
+    margin-left: 0.5rem;
+    cursor: pointer;
 
-       &:hover {
-        text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
     }
-   }
-
-
+  }
 }

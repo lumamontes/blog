@@ -1,1 +1,35 @@
 // TODO
+.container {
+  > div {
+    height: 60vh;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: scale-down;
+    }
+  }
+  article {
+    max-width: 720px;
+    margin: 3rem auto 0;
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}
+
+.info {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  display: flex;
+  gap: 24px;
+
+  time,
+  p {
+    font-size: 14px;
+    .icon {
+      font-size: 20px;
+    }
+    display: flex;
+    gap: 8px;
+  }
+}

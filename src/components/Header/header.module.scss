@@ -1,1 +1,10 @@
 // TODO
+.header {
+  height: 10vh;
+  div {
+    max-width: 720px;
+    padding: 0 2rem;
+    margin: 3rem auto 0;
+    cursor: pointer;
+  }
+}
