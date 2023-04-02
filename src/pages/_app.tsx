@@ -1,8 +1,12 @@
-import { AppProps } from 'next/app';
-import '../styles/globals.scss';
+import { PrismicProvider } from '@prismicio/react';
+import Link from 'next/link';
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  return <Component {...pageProps} />;
+import '../styles/globals.css';
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <PrismicProvider internalLinkComponent={props => <Link {...props} />}>
+      <Component {...pageProps} />
+    </PrismicProvider>
+  );
 }
-
-export default MyApp;

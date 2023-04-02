@@ -55,6 +55,7 @@ const mockedGetByTypeReturn = {
 };
 
 jest.mock('@prismicio/client');
+jest.mock('@prismicio/next');
 jest.mock('../../services/prismic');
 
 const mockedPrismic = getPrismicClient as jest.Mock;

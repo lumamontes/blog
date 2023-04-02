@@ -6,9 +6,10 @@ import {
 } from 'next';
 import { parse, ParsedUrlQuery } from 'querystring';
 
-import { useRouter } from 'next/router';
 import Post, { getStaticPaths, getStaticProps } from '../../pages/post/[slug]';
 import { getPrismicClient } from '../../services/prismic';
+
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
 interface Post {
   first_publication_date: string | null;
@@ -180,8 +181,9 @@ const mockedGetByUIDReturn = {
   },
 };
 
-jest.mock('@prismicio/client');
-jest.mock('../../services/prismic');
+// jest.mock('@prismicio/next');
+// jest.mock('@prismicio/client');
+// jest.mock('../../../prismicio');
 jest.mock('next/router');
 const mockedUseRouter = useRouter as jest.Mock;
 const mockedPrismic = getPrismicClient as jest.Mock;

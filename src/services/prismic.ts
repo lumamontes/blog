@@ -1,5 +1,6 @@
 import * as prismic from '@prismicio/client';
-import * as prismicNext from '@prismicio/next';
+import { enableAutoPreviews } from '@prismicio/next';
+
 import sm from '../../sm.json';
 
 /**
@@ -28,7 +29,7 @@ export const getPrismicClient = (config?: PrismicConfig): prismic.Client => {
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
   });
 
-  prismicNext.enableAutoPreviews({
+  enableAutoPreviews({
     client,
     req: config?.req,
   });

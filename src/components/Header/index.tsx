@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/" legacyBehavior passHref>
-        <div>
+        <div data-testid="logo">
           <img src={'/Logo.svg'} alt="logo" />
         </div>
       </Link>

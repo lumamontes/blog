@@ -33,14 +33,9 @@ describe('Header', () => {
       wrapper: RouterWrapper,
     });
 
-    const secondLink = screen.getByAltText('logo');
-
+    const secondLink = screen.getByTestId('logo');
     fireEvent.click(secondLink);
 
-    expect(mockedPush).toHaveBeenCalledWith(
-      '/',
-      expect.anything(),
-      expect.anything()
-    );
+    expect(mockedPush).toHaveBeenCalledWith('/', expect.anything());
   });
 });
